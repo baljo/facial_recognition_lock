@@ -5,28 +5,29 @@
 
 ## Problem statement
 
-There are times when you wish you'd have three arms. For example when you arrive home with grocery shopping bags in both hands, rain is pouring down, and you need to find the door key to unlock and open the door, without letting the shopping bags get wet and dirty. One way to solve this is to use a facial recognition doorbell and door unlocking mechanism. As an additional benefit you can even get notifications when someone, e.g. a family member, has been recognized and opened the door as well as when an unknown person has stood in front of the door.
+There are moments when you wish you had three arms. Imagine arriving home with bags of groceries in both hands, rain pouring down, and needing to find your keys to unlock the door—without letting your groceries get wet and dirty. One solution is to install a facial recognition doorbell and door unlocking mechanism. As an additional benefit, you can receive notifications when someone, like a family member, is recognized and opens the door, or if an unknown person appears at the door.
 
 ## Solution
 
-To build this facial recognition PoC, a M2 SoM Evaluation Board and a B524 SoM was used, together with the Person Sensor from Useful Sensors. Initially the plan was to only create a facial recognition doorbell, i.e. signalling somehow and sending a notification when a person was in front of the sensor. But to take it a step further, I wanted to see if it was possible to also do facial identification and not only recognition, meaning identifying **who** a person is, not only that it is a person. 
+To build this facial recognition proof of concept (PoC), an M2 SoM Evaluation Board, a B524 SoM, and the Person Sensor from Useful Sensors were used. Initially, the plan was to create a facial recognition doorbell that signals and sends notifications when someone is in front of the sensor. To take this further, I aimed to enable facial identification, meaning identifying **who** the person is, rather than just recognizing the presence of a person.
 
 
 ## How does it work?
 
-From a user perspective, this is fairly simple:
-- The sensor is continously checking for persons (faces) in its view
-- If a person is in front of the Person Sensor
-  - It furcher checks if the face is one of the maximum eight identities it's been calibrated with, and if a matching face is found
-    - The Particle device further checks if that person is allowed to open the lock, and signals the servo accordingly
-    - A mobile device is notified through the Pushover service, the notification is containing the identity of the person seen
+From a user perspective, the process is straightforward:
+
+- The sensor continuously checks for faces in its view.
+- If a face is detected:
+  - It checks whether the face matches one of the eight identities it has been calibrated to recognize.
+  - If a matching face is found, the Particle device verifies if that person is allowed to unlock the door and signals the servo accordingly.
+  - A mobile notification is sent through Pushover, identifying the person detected.
 
 
 ## Bill of materials
 
 - MCU: [Particle M.2 SoM Evaluation Board](https://store.particle.io/products/som-evaluation-board?_pos=1&_sid=a6a33f54b&_ss=r) + [B524](https://store.particle.io/products/b-series-lte-cat1-3g-2g-europe-ethersim?_pos=1&_sid=c3651bdc9&_ss=r)
   - The B524 has cellular and Bluetooth connectivity (no Wi-Fi), but if you want Wi-Fi instead of cellular connectivity, a [Photon 2 dev board](https://store.particle.io/products/photon-2?_pos=1&_sid=5598553d5&_ss=r) can be used and is more cost effective 
-- [Person Sensor by Useful Sensors](https://www.sparkfun.com/products/21231), price only ~$10 USD!
+- [Person Sensor by Useful Sensors](https://www.sparkfun.com/products/21231), priced at ~$10 USD!
 - Optional, but recommended
   - separate power source for the servo or actuator, especially if the latter is power hungry or under load 
 - Optional
@@ -38,29 +39,29 @@ From a user perspective, this is fairly simple:
 
 For this project, you’ll need
 
-- A Particle account and a basic understanding of the Particle platform capability
-- Particle-flavored, Arduino-style, C++ development experience
-- No soldering needed for this PoC
+- A Particle account and basic understanding of the Particle platform's capabilities.
+- Particle-flavored, Arduino-style, C++ development.
+- No soldering is required for this PoC
 - Optional: 3D-printed case for the Eval Board, and a [3D-printed enclosure](https://thangs.com/designer/ZackFreedman/3d-model/Person%20Sensor%20Mount%20-%20Print-in-place%2C%20nothing%20but%20filament%21-836098) for the Person Sensor 
 
 
 ## Assembly
 
-There's only a few things to assemble, see the top picture for a visual overview
+Only a few steps are needed to assemble the system (see the top image for a visual overview):
 - Attach the B524 to the Eval Board
-- Attach at least the cellular antenna to the Eval Board, I've left the Bluetooth antenna unconnected
-- Connect the Person Sensor to the Eval Board, ensure you are connecting to the I2C Grove port and not the analog!
+- Connect the cellular antenna to the Eval Board (the Bluetooth antenna can be left unconnected).
+- Connect the Person Sensor to the Eval Board, ensuring that you connect it to the I2C Grove port, not the analog port!
 - Optional: 
   - Connect a battery 
-  - If you use a 6V servo or actuator, like in this project, you can temporarily power it from the Eval Board. For a long-term solution, I strongly recommend a separate power source!
-    - Connect the servo signal wire to **PWM0** (= **D4** in the program)
+  - If using a 6V servo or actuator like in this project, it can be powered temporarily from the Eval Board. For long-term use, a separate power source is recommended.
+    - Connect the servo signal wire to **PWM0** (**D4** in the program)
     - Connect the ground wire to **GND** on the board
     - Connect the power wire to **VCC** on the board
-- Power the B524 with the SOM power switch
-- Connect the board to your computer with an USB-cable
-- If you use a battery, charge it with the BAT POWER switch
+- Power the B524 using the SOM power switch
+- Connect the Eval board to your computer via an USB-cable
+- If using a battery, charge it using the BAT POWER switch
 
-**Picture of servo wiring: white = signal, black = ground, red = power**
+**Servo wiring: white = signal, black = ground, red = power**
 
 ![](/images/IMG_4446_cropped.jpg)
 
@@ -70,17 +71,17 @@ There's only a few things to assemble, see the top picture for a visual overview
 ![](/images/IMG_4451_annotated_cropped.jpg)
 
 
-### Optional: Test servo
+### Optional: Test the servo
 
-This is optional, but if you want to verify the servo connection is working, you can test it with this [program](/backup/Servo.cpp). which is simply moving the servo horn between its two endpoints. The program is optimized for the servo I used, verify the specifications of your own serve before you run the program!
+You can optionally verify the servo connection using [this test program](/backup/Servo.cpp), which moves the servo horn between its two endpoints. The program is optimized for the specific servo used in this project, so verify your servo's specifications before running it.
 
 ## Software apps and online services
 
 - Visual Studio Code with the Particle Workbench extension installed
 - Optional
   - Particle’s Webhook Integration for sending notifications to your mobile
-  - Twilio, Pushover, or similar service to send SMS or notifications
-- The whole program is [here](/src/Person_sensor.cpp)
+  - Twilio, Pushover, or similar services for sending SMS or notifications
+- The complete program can be found [here](/src/Person_sensor.cpp)
 
 ### Set up a Webhook integration
 
@@ -131,11 +132,11 @@ All this means that apart from a few configurations options, the sensor can't be
 #### Calibration
 
 The calibration can in theory be done stand-alone, but for practical purposes a computer should be connected. This way you can verify the functionality via the terminal window: 
-- First the person whose face is to be stored needs to be in front of the Person Sensor. When the sensor sees a face, its green led is lit.
-- As quickly as possible (within ~200 ms), the `Mode` button on the Eval board needs to be briefly pressed. This stores the features of the face together with a corresponding ID into the sensor's EEPROM. Eight faces can be stored, so the ID's are 0 - 7.
-- Repeat above for each new face you want to store in the sensor.
+- Position the person whose face you want to store in front of the sensor. When the face is detected, the green LED will light up.
+- Within ~200 ms, press the `Mode` button on the Eval Board to store the face's features and assign it an ID in the sensor's EEPROM. Up to eight faces can be stored, with IDs ranging from 0 to 7.
+- Repeat this process for each new face you want to store.
 
-Below the function which is reacting on the button event. The "magic" happens in this code line - `person_sensor_write_reg(NEXT_ID_REGISTER, nextFaceID);` - which stores the face features and corresponding ID into EEPROM.
+Below the function which is reacting on the button event. The "magic" happens in this code line - `person_sensor_write_reg(NEXT_ID_REGISTER, nextFaceID);` - which stores the face's features and corresponding ID into EEPROM.
 
 ```
 void button_clicked(system_event_t event, int param)
