@@ -5,9 +5,15 @@
 
 ## Problem statement
 
-There are moments when you wish you had three arms. Imagine arriving home with bags of groceries in both hands, rain pouring down, and needing to find your keys to unlock the door—without letting your groceries get wet and dirty. One solution is to install a facial recognition doorbell and door unlocking mechanism. As an additional benefit, you can receive notifications when someone, like a family member, is recognized and opens the door, or if an unknown person appears at the door.
+There are moments when you wish you had three arms. Imagine arriving home with bags of groceries in both hands, rain pouring down, and needing to find your keys to unlock the door—without letting your groceries get wet and dirty.
+
+There are similarly cases when you'd like something to happen when your face is identified. E.g. unlocking a medal cabinet only if you are in front of it, or starting a small fan when you are sitting at your desk.
 
 ## Solution
+
+Part of the solution to above problems is to have "something" identifying your face and, depending on the use case in question, act accordingly.
+
+A solution to the grocery shopping and medal cabinet use cases is to install a facial recognition doorbell and door unlocking mechanism. As an additional benefit, you can receive notifications when someone, like a family member, is recognized and opens the door, or if an unknown person appears at the door. With only minor modifications you can modify the concept to the desk fan use case, or whatever you can imagine.
 
 To build this facial recognition proof of concept (PoC), an M2 SoM Evaluation Board, a B524 SoM, and the Person Sensor from Useful Sensors were used. Initially, the plan was to create a facial recognition doorbell that signals and sends notifications when someone is in front of the sensor. To take this further, I aimed to enable facial identification, meaning identifying **who** the person is, rather than just recognizing the presence of a person.
 
