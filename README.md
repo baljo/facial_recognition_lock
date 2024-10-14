@@ -9,7 +9,7 @@ There are times when you wish you'd have three arms. For example when you arrive
 
 ## Solution
 
-To build this facial recognition POC, a M2 SoM Evaluation Board and a B524 SoM was used, together with the Person Sensor from Useful Sensors.
+To build this facial recognition POC, a M2 SoM Evaluation Board and a B524 SoM was used, together with the Person Sensor from Useful Sensors. Initially the plan was to only create a facial recognition doorbell, i.e. signalling somehow and sending a notification when a person was in front of the sensor. But to take it a step further, I wanted to see if it was possible to also do facial identification and not only recognition, meaning identifying **who** a person is, not only that it is a person. 
 
 
 ## Background
@@ -17,6 +17,9 @@ To build this facial recognition POC, a M2 SoM Evaluation Board and a B524 SoM w
 ## Project plan
 
 ## Bill of materials
+
+- MCU: [Particle M.2 SoM Evaluation Board](https://store.particle.io/products/som-evaluation-board?_pos=1&_sid=a6a33f54b&_ss=r) + [B524](https://store.particle.io/products/b-series-lte-cat1-3g-2g-europe-ethersim?_pos=1&_sid=c3651bdc9&_ss=r)
+  - df af s
 
 ## Skills & tools required
 
