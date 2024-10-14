@@ -20,7 +20,7 @@ To build this facial recognition PoC, a M2 SoM Evaluation Board and a B524 SoM w
 
 - MCU: [Particle M.2 SoM Evaluation Board](https://store.particle.io/products/som-evaluation-board?_pos=1&_sid=a6a33f54b&_ss=r) + [B524](https://store.particle.io/products/b-series-lte-cat1-3g-2g-europe-ethersim?_pos=1&_sid=c3651bdc9&_ss=r)
   - The B524 has cellular and Bluetooth connectivity (no Wi-Fi), but if you want Wi-Fi instead of cellular connectivity, a [Photon 2 dev board](https://store.particle.io/products/photon-2?_pos=1&_sid=5598553d5&_ss=r) can be used and is more cost effective 
-- [Person Sensor by Useful Sensors](https://www.sparkfun.com/products/21231), price only ~$10 USD
+- [Person Sensor by Useful Sensors](https://www.sparkfun.com/products/21231), price only ~$10 USD!
 - Optional, but recommended
   - separate power source for the servo or actuator, especially if the latter is power hungry or under load 
 - Optional
@@ -43,13 +43,37 @@ For this project, you’ll need
 There's only a few things to assemble
 - Attach the B524 to the Eval Board
 - Attach at least the cellular antenna to the Eval Board, I've left the Bluetooth antenna unconnected
-- Connect the Person Sensor to the Eval Board, ensure you are connecting to the digital Grove port and not the analog!
-- If you use a 6V servo or actuator, like in this project, you can temporarily power it from the Eval Board. For a long-term solution, I strongly recommend a separate power source!
-  - Connect the servo signal wire to PWM0 (= D4 in the program)
-  - Connect the ground wire to GND on the board
-  - Connect the power wire to VCC on the board
+- Connect the Person Sensor to the Eval Board, ensure you are connecting to the I2C Grove port and not the analog!
+- Optional: 
+  - Connect a battery 
+  - If you use a 6V servo or actuator, like in this project, you can temporarily power it from the Eval Board. For a long-term solution, I strongly recommend a separate power source!
+    - Connect the servo signal wire to **PWM0** (= **D4** in the program)
+    - Connect the ground wire to **GND** on the board
+    - Connect the power wire to **VCC** on the board
+- Power the B524 with the SOM power switch
+- Connect the board to your computer with an USB-cable
+- If you use a battery, charge it with the BAT POWER switch
+
+**Picture of servo wiring: white = signal, black = ground, red = power**
+
+![](/images/IMG_4446_cropped.jpg)
+
+
+**Battery & USB cables, switches**
+
+![](/images/IMG_4451_annotated_cropped.jpg)
+
+
+### Optional: Test servo
+
+This is optional, but if you want to verify the servo connection is working, you can test it with this [program](/backup/Servo.cpp). which is simply moving the servo horn between its two endpoints. The program is optimized for the servo I used, verify the specifications of your own serve before you run the program!
 
 ## Software apps and online services
+
+- Visual Studio Code with the Particle Workbench extension installed
+- Optional
+  - Particle’s Webhook Integration for sending notifications to your mobile
+  - Twilio, Pushover, or similar service to send SMS or notifications
 
 ## The code
 
