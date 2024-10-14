@@ -21,7 +21,6 @@ From a user perspective, this is fairly simple:
     - The Particle device further checks if that person is allowed to open the lock, and signals the servo accordingly
     - A mobile device is notified through the Pushover service, the notification is containing the identity of the person seen
 
-## Project plan
 
 ## Bill of materials
 
@@ -47,7 +46,7 @@ For this project, you’ll need
 
 ## Assembly
 
-There's only a few things to assemble
+There's only a few things to assemble, see the top picture for a visual overview
 - Attach the B524 to the Eval Board
 - Attach at least the cellular antenna to the Eval Board, I've left the Bluetooth antenna unconnected
 - Connect the Person Sensor to the Eval Board, ensure you are connecting to the I2C Grove port and not the analog!
@@ -127,16 +126,16 @@ This assumes you are using the Pushover service, but the overall principle is si
 
 The idea with the Person Sensor is that it should behave similarly as any other sensor, i.e. send data  back to the calling device. It is pre-programmed with algorithms that detect nearby faces, and return information over a simple  I2C interface. It is designed to be used as an input to a larger system and be treated like any other sensor where power and information are provided through the I2C interface.
 
-All this means that apart from a few configurations options, the sensor can't be programmed, which also makes it extremely tamperproof (100 %?). But how do we then get it to not only recognize if a face is seen, but also to recognize the face? The solution here is called calibration.
+All this means that apart from a few configurations options, the sensor can't be programmed, which also makes it extremely tamperproof (100 %?). But how do we then get it to not only **recognize if a face is seen**, but also to **identify the face**? The solution here is called calibration.
 
 #### Calibration
 
 The calibration can in theory be done stand-alone, but for practical purposes a computer should be connected. This way you can verify the functionality via the terminal window: 
 - First the person whose face is to be stored needs to be in front of the Person Sensor. When the sensor sees a face, its green led is lit.
-- As quickly as possible (within ~200 ms), the `Mode` button on the Eval board needs to be briefly pressed. This stores the features of the face together with a corresponding ID into the sensors EEPROM. Eight faces can be stored, so the ID's are 0 - 7.
+- As quickly as possible (within ~200 ms), the `Mode` button on the Eval board needs to be briefly pressed. This stores the features of the face together with a corresponding ID into the sensor's EEPROM. Eight faces can be stored, so the ID's are 0 - 7.
 - Repeat above for each new face you want to store in the sensor.
 
-Below the function which is reacting on the button event. The "magic" happens in this code line - `person_sensor_write_reg(NEXT_ID_REGISTER, nextFaceID);` - which stores the face features and ID into EEPROM.
+Below the function which is reacting on the button event. The "magic" happens in this code line - `person_sensor_write_reg(NEXT_ID_REGISTER, nextFaceID);` - which stores the face features and corresponding ID into EEPROM.
 
 ```
 void button_clicked(system_event_t event, int param)
@@ -191,7 +190,9 @@ Furthermore, while you are testing the code, you can comment out the `Particle.p
 
 ## Security notes ##
 
-Accordign to Useful Sensors you shouldn’t rely on the facial identification results as a **sole** security factor, since it’s not designed to be that accurate. It’s intended for less safety-critical applications like personalizing a user experience automatically, where the cost of mistakes is lower.
+According to Useful Sensors you shouldn’t rely on the facial identification results as a **sole** security factor, since it’s not designed to be that accurate. It’s intended for less safety-critical applications like personalizing a user experience automatically, where the cost of mistakes is lower.
+
+You of course also needs to consider physical security of the device, and weather-proofing everything as per the location.
 
 ## Real-Life Solution Demonstration ##
 
@@ -208,4 +209,4 @@ At the same time a notification is sent to my phone, informing who is opening th
 
 # CONCLUSION #
 
-This PoC and tutorial demonstrated how you with fairly simple devices can build a facial recognition and identification doorbell/notification device, and in addition how you can utilize it for e.g. unlocking purposes. This was also the first time I used a Particle device together with their IoT-platform, and although I didn't understand everything right away, I'm surprised how logical everything is once I got over the initial hurdle!
+This PoC and tutorial demonstrated how you with fairly simple devices can build a facial recognition and identification doorbell/notification device, and in addition how you can utilize it for e.g. unlocking purposes. This was also the first time I used a Particle device together with their IoT-platform, and although I didn't understand everything right away, I'm surprised how logical everything is, once I got over the initial hurdle!
