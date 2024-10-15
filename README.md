@@ -39,7 +39,7 @@ From a user perspective, the process is straightforward:
 
 - [Person Sensor by Useful Sensors](https://www.sparkfun.com/products/21231), priced at ~$10 USD!
 
-![](/images/Person_sensor_cropped.jpg)
+![](/images/Person_Sensor_cropped.jpg)
 
 
 - Optional, but recommended
