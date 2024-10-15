@@ -72,6 +72,10 @@ Only a few steps are needed to assemble the system (see the top image for a visu
 - Attach the B524 to the Eval Board
 - Connect the cellular antenna to the Eval Board (the Bluetooth antenna can be left unconnected for this project).
 - Connect the Person Sensor to the Eval Board, ensuring that you connect it to the I2C Grove port, not the analog port!
+
+![](/images/Grove_connector_cropped.jpg)
+
+
 - Optional: 
   - Connect a battery 
   - If using a 6V servo or actuator like in this project, it can be powered temporarily from the Eval Board. For long-term use, a separate power source is recommended.
