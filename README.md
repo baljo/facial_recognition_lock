@@ -3,6 +3,7 @@
 ![](/images/IMG_4468_cropped.jpg)
 
 
+
 ## Problem statement
 
 There are moments when you wish you had three arms. Imagine arriving home with bags of groceries in both hands, rain pouring down, and needing to find your keys to unlock the door—without letting your groceries get wet and dirty.
