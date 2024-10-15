@@ -1,6 +1,6 @@
 # How to unlock a door with your face
 
-![](/images/IMG_4443_cropped.jpg)
+![](/images/IMG_4455_cropped.jpg)
 
 
 ## Problem statement
@@ -11,7 +11,7 @@ There are similarly cases when you'd like something to happen when your face is 
 
 ## Solution
 
-A solution to the grocery shopping and medal cabinet use cases is to install a facial recognition doorbell and door unlocking mechanism. As an additional benefit, you can receive notifications when someone, like a family member, is recognized and opens the door, or if an unknown person appears at the door. With only minor modifications you can modify the concept to the desk fan use case, or whatever you can imagine.
+A solution to the grocery shopping and medal cabinet use cases is to install a facial recognition doorbell and door unlocking mechanism. As an additional benefit, you can receive notifications when someone, like a family member, is recognized and opens the door, or if an unknown person appears at the door. With only minor modifications you can modify the concept to the desk fan use case, or anything else you can imagine.
 
 To build this facial recognition proof of concept (PoC), an M2 SoM Evaluation Board, a B524 SoM, and the Person Sensor from Useful Sensors were used. Initially, the plan was to create a facial recognition doorbell that signals and sends notifications when someone is in front of the sensor. To take this further, I aimed to enable facial identification, meaning identifying **who** the person is, rather than just recognizing the presence of a person.
 
@@ -29,15 +29,32 @@ From a user perspective, the process is straightforward:
 
 ## Bill of materials
 
-- MCU: [Particle M.2 SoM Evaluation Board](https://store.particle.io/products/som-evaluation-board?_pos=1&_sid=a6a33f54b&_ss=r) + [B524](https://store.particle.io/products/b-series-lte-cat1-3g-2g-europe-ethersim?_pos=1&_sid=c3651bdc9&_ss=r)
-  - The B524 has cellular and Bluetooth connectivity (no Wi-Fi), but if you want Wi-Fi instead of cellular connectivity, a [Photon 2 dev board](https://store.particle.io/products/photon-2?_pos=1&_sid=5598553d5&_ss=r) can be used and is more cost effective 
+- MCU: [Particle M.2 SoM Evaluation Board](https://store.particle.io/products/som-evaluation-board?_pos=1&_sid=a6a33f54b&_ss=r) 
+
+![](/images/M2_eval_board_cropped_2.jpg)
+
+- [B524](https://store.particle.io/products/b-series-lte-cat1-3g-2g-europe-ethersim?_pos=1&_sid=c3651bdc9&_ss=r), it has cellular and Bluetooth connectivity (no Wi-Fi), but if you want Wi-Fi instead of cellular connectivity, a [Photon 2 dev board](https://store.particle.io/products/photon-2?_pos=1&_sid=5598553d5&_ss=r) can be used and is more cost effective 
+
+![](/images/B524_cropped.jpg)
+
 - [Person Sensor by Useful Sensors](https://www.sparkfun.com/products/21231), priced at ~$10 USD!
+
+![](/images/Person_sensor_cropped.jpg)
+
+
 - Optional, but recommended
   - separate power source for the servo or actuator, especially if the latter is power hungry or under load 
 - Optional
   - LiPo battery, some [options](https://docs.particle.io/hardware/power/batteries/)
   - [Linear actuator kit](https://kitronik.co.uk/products/2595-linear-actuator?_pos=3&_sid=e648f346a&_ss=r), you can replace this with any servo, push rod, or larger linear actuator
+
+![](/images/Linear_actuator_cropped.jpg)
+
+
   - [Qwiic Cable - Grove Adapter (100mm)](https://www.sparkfun.com/products/15109), this if you want an easy way of connecting the Person Sensor to the Grove port on the M.2 SoM Eval Board, another option is to use separate jumper wires.
+
+![](/images/Qwiic_Grove_cable_cropped.jpg)
+
 
 ## Skills & tools required
 
@@ -49,7 +66,7 @@ For this project, you’ll need
 - Optional: 3D-printed case for the Eval Board, and a [3D-printed enclosure](https://thangs.com/designer/ZackFreedman/3d-model/Person%20Sensor%20Mount%20-%20Print-in-place%2C%20nothing%20but%20filament%21-836098) for the Person Sensor 
 
 
-## Assembly
+# Assembly
 
 Only a few steps are needed to assemble the system (see the top image for a visual overview):
 - Attach the B524 to the Eval Board
@@ -58,21 +75,25 @@ Only a few steps are needed to assemble the system (see the top image for a visu
 - Optional: 
   - Connect a battery 
   - If using a 6V servo or actuator like in this project, it can be powered temporarily from the Eval Board. For long-term use, a separate power source is recommended.
+    - In following images following wire colors are used: white = signal, black = ground, red = power
     - Connect the servo signal wire to **PWM0** (**D4** in the program)
     - Connect the ground wire to **GND** on the board
-    - Connect the power wire to **VCC** on the board
+
+
+![](/images/PWM_GND_cropped.jpg)
+
+
+  - Connect the power wire to **VCC** on the board
+
+![](/images/Power_cropped.jpg)
+
+
 - Power the B524 using the SOM power switch
 - Connect the Eval board to your computer via an USB-cable
 - If using a battery, charge it using the BAT POWER switch
 
-**Servo wiring: white = signal, black = ground, red = power**
+![](/images/Switches_cropped.jpg)
 
-![](/images/IMG_4446_cropped.jpg)
-
-
-**Battery & USB cables, switches**
-
-![](/images/IMG_4451_annotated_cropped.jpg)
 
 
 ### Optional: Test the servo
@@ -157,7 +178,7 @@ void button_clicked(system_event_t event, int param)
 
 **Mode button**
 
-![](/images/IMG_4453_cropped.jpg)
+![](/images/Mode_button_cropped.jpg)
 
 
 
