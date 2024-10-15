@@ -1,6 +1,6 @@
 # How to unlock a door with your face
 
-![](/images/IMG_4455_cropped.jpg)
+![](/images/IMG_4468_cropped.jpg)
 
 
 ## Problem statement
@@ -70,7 +70,7 @@ For this project, you’ll need
 
 Only a few steps are needed to assemble the system (see the top image for a visual overview):
 - Attach the B524 to the Eval Board
-- Connect the cellular antenna to the Eval Board (the Bluetooth antenna can be left unconnected).
+- Connect the cellular antenna to the Eval Board (the Bluetooth antenna can be left unconnected for this project).
 - Connect the Person Sensor to the Eval Board, ensuring that you connect it to the I2C Grove port, not the analog port!
 - Optional: 
   - Connect a battery 
@@ -92,7 +92,7 @@ Only a few steps are needed to assemble the system (see the top image for a visu
 - Connect the Eval board to your computer via an USB-cable
 - If using a battery, charge it using the BAT POWER switch
 
-![](/images/Switches_cropped.jpg)
+![](/images/Switches_cropped_2.jpg)
 
 
 
@@ -147,6 +147,10 @@ This assumes you are using the Pushover service, but the overall principle is si
     }
 }
 ```
+
+![](/images/webhook.jpg)
+
+
 
 ### Calibrate the Person Sensor
 
