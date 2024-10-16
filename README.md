@@ -28,6 +28,10 @@ From a user perspective, the process is straightforward:
   - A mobile notification is sent through Pushover, identifying the person detected.
 
 
+![](/images/close_up.gif)
+
+
+
 ## Bill of materials
 
 - MCU: [Particle M.2 SoM Evaluation Board](https://store.particle.io/products/som-evaluation-board?_pos=1&_sid=a6a33f54b&_ss=r) 
@@ -113,13 +117,29 @@ You can optionally verify the servo connection using [this test program](/backup
   - Twilio, Pushover, or similar services for sending SMS or notifications
 - The complete program can be found [here](/src/Person_sensor.cpp)
 
-### Set up a Webhook integration
+### Set up a Webhook integration to Pushover
 
 This assumes you are using the Pushover service, but the overall principle is similar, regardless of chosen service.
 
+#### Pushover service ####
 - Create an account at Pushover (or similar service, e.g. Twilio)
+  - Create an application in Pushover
   - Take a note of the User Key and API token
-- Also install the Pushover app on your mobile device
+- Also install the Pushover app on your mobile device to get notifications
+
+
+**User key field in Pushover** 
+
+![](/images/Pushover_user_key.jpg)
+
+**API Token/key in Pushover**
+
+![](/images/Pushover_API_key.jpg)
+
+
+
+#### Particle Webhook ####
+
 - In the Particle console, Go to `Integrations`
 - Add a new integration
 - Scroll down and select `Custom Webhook`
@@ -129,6 +149,8 @@ This assumes you are using the Pushover service, but the overall principle is si
 - `event` - in this case *"face_detected"* - should be same event as you are publishing from your code
 - Test the integration, if everything is set up correctly, you should get a notification on your mobile device
   - If you use Pushover, the notification on your mobile is received through the Pushover service, not as a SMS.
+
+
 
 
 ```
