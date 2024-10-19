@@ -249,7 +249,7 @@ Furthermore, while you are testing the code, you can comment out the `Particle.p
 
 According to Useful Sensors you shouldn’t rely on the facial identification results as a **sole** security factor, since it’s not designed to be that accurate. It’s intended for less safety-critical applications like personalizing a user experience automatically, where the cost of mistakes is lower.
 
-You of course also needs to consider physical security of the device, and weather-proofing everything as per the location.
+You of course also need to consider physical security of the device, and weather-proofing everything as per the location.
 
 ## Real-Life Solution Demonstration ##
 
